@@ -15,9 +15,18 @@ pipeline {
             }
         }
 
-        stage('install dependency') {
+        stage('create venv') {
             steps {
-                sh "pip3 install -r requirements.txt"
+                sh """
+                    python3 -m venv ~/myenv
+                    source ~/myenv/bin/activate
+                """
+            }
+        }
+
+        stage('Install dependency') {
+            steps {
+                sh "python3 -m pip install -r requirements.txt"
             }
         }
     }
