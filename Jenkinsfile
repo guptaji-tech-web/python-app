@@ -14,5 +14,11 @@ pipeline {
                 git branch: 'feature-1', url: 'https://github.com/guptaji-tech-web/python-app.git' 
             }
         }
+
+        stage('install dependency') {
+            steps {
+                sh "pip install -r requirements.txt"
+            }
+        }
     }
 }  
