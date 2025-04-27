@@ -2,10 +2,22 @@ pipeline {
     agent {
         label "worker-1"
     }
+
+    tools {
+        python "python3"
+    }
+
     stages {
-        stage('Demo') {
+
+        stage('clone') {
             steps {
-                echo "hello world"
+                git branch: 'feature-1', url: 'https://github.com/guptaji-tech-web/python-app.git' 
+            }
+        }
+
+        stage('install dependancies') {
+            steps {
+                sh "pip install -r requirements.txt"
             }
         }
     }
