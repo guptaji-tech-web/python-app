@@ -19,7 +19,7 @@ pipeline {
 
         stage('Build docker image') {
             steps {
-                sh "docker build -t guptatrng/python-app:$GIT_COMMIT"
+                sh "docker build -t guptatrng/python-app:$GIT_COMMIT ."
             }
         }
 
