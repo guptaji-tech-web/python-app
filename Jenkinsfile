@@ -5,6 +5,8 @@ pipeline {
 
     tools {
         git "git"
+        dockerTool 'docker'
+
     }
 
     stages {
