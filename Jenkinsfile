@@ -3,7 +3,7 @@ pipeline {
         label "worker-1"
     }
     stages {
-        stage {
+        stage('Demo') {
             steps {
                 echo "hello world"
             }
