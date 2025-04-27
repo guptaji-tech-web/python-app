@@ -4,7 +4,7 @@ pipeline {
     }
 
     tools {
-        python "python3"
+        git "git"
     }
 
     stages {
