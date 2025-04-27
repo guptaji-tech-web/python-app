@@ -4,7 +4,7 @@ pipeline {
     }
     stages {
         stage {
-            steps{
+            steps {
                 echo "hello world"
             }
         }
