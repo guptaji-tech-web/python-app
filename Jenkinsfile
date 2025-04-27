@@ -5,6 +5,7 @@ pipeline {
 
     tools {
         git "git"
+        Python "python3"
     }
 
     stages {
