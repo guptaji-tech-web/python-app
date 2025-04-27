@@ -15,32 +15,18 @@ pipeline {
             }
         }
 
-        stage('create venv') {
+        stage('Build docker image') {
             steps {
-                sh """
-                    python3 -m venv ~/myenv
-                """
+                sh "docker build -t guptatrng/python-app:$GIT_COMMIT"
             }
         }
 
-        stage('Install dependency') {
+        stage('Push docker image') {
             steps {
-                sh """
-                   . ~/myenv/bin/activate
-                   python3 -m pip install -r requirements.txt
-                """
+                withDockerRegistry(credentialsId: 'docker-credentials', url: "") {
+                    sh "docker push guptatrng/python-app:$GIT_COMMIT"
+                }
             }
-        }
-
-        stage('Run application') {
-            steps {
-                sh """
-                    . ~/myenv/bin/activate
-                    export FLASK_APP=hello.py
-                    flask run --host=0.0.0.0 --port=5000
-                """
-            }
-            
         }
     }
 }  
