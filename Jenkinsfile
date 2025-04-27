@@ -36,7 +36,7 @@ pipeline {
             steps {
                 sh """
                     . ~/myenv/bin/activate
-                    export FLASK_APP=app.py
+                    export FLASK_APP=hello.py
                     flask run --host=0.0.0.0 --port=5000
                 """
             }
