@@ -1,0 +1,16 @@
+name: Enforce specific source branch
+
+on:
+  pull_request:
+    branches:
+      - sit
+
+jobs:
+  check-branch:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Fail if source branch is not 'develop'
+        if: github.head_ref != 'develop'
+        run: |
+          echo "You can only create PRs to sit from develop branch."
+          exit 1
