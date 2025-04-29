@@ -34,9 +34,9 @@ pipeline {
         stage('Modify manifests') {
             steps {
                 dir('./manifests') {
-                    sh "sed -i 's/^\(\s*python-app\s*\).*/\1python-app-$BRANCH_NAME/' deployment.yaml"
-                    sh "sed -i 's/^\(\s*guptatrng/python-app:v1\s*\).*/\1guptatrng/python-app-$BRANCH_NAME:$GIT_COMMIT/' deployment.yaml"
-                    sh "sed -i 's/^\(\s*python-app\s*\).*/\1python-app-$BRANCH_NAME/' service.yaml"
+                    sh "sed -i 's|guptatrng/python-app:v1|guptatrng/python-app-$BRANCH_NAME:$GIT_COMMIT|g' deployment.yaml"
+                    sh "sed -i 's/python-app/python-app-$BRANCH_NAME/g' deployment.yaml"
+                    sh "sed -i 's/python-app/python-app-$BRANCH_NAME/g' service.yaml"
                 }
             }
         }
