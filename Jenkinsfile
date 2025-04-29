@@ -19,14 +19,14 @@ pipeline {
 
         stage('Build docker image') {
             steps {
-                sh "docker build -t guptatrng/python-app/app-$BRANCH_NAME:$GIT_COMMIT ."
+                sh "docker build -t guptatrng/python-app-$BRANCH_NAME:$GIT_COMMIT ."
             }
         }
 
         stage('Push docker image') {
             steps {
                 withDockerRegistry(credentialsId: 'docker-credentials', url: "") {
-                    sh "docker push guptatrng/python-app/app-$BRANCH_NAME:$GIT_COMMIT"
+                    sh "docker push guptatrng/python-app-$BRANCH_NAME:$GIT_COMMIT"
                 }
             }
         }
