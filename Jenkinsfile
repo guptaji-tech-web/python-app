@@ -44,20 +44,21 @@ pipeline {
         stage('Prepare directory') {
             steps {
                 dir('./manifests') {
-                    sh "mkdir python-app-manifest"
-                    sh "mv *.yaml ./python-app-manifest"
+                    sh "mkdir github"
                 }
             }
         }
 
         stage('Push manifest files') {
             steps {
-                dir('./manifests/python-app-manifest') {
+                dir('./manifests/github') {
                     withCredentials([gitUsernamePassword(credentialsId: 'github-guptaji-tech-web', gitToolName: 'git')]) {
                         sh """
                             git init
                             git remote add origin https://github.com/guptaji-tech-web/python-app-manifest.git
                             git checkout -b $BRANCH_NAME
+                            git pull origin $BRANCH_NAME
+                            mv ../*.yaml ./python-app-manifest
                             git add .
                             git commit -m $GIT_COMMIT
                             git push origin $BRANCH_NAME
