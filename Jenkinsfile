@@ -58,7 +58,8 @@ pipeline {
                             git remote add origin https://github.com/guptaji-tech-web/python-app-manifest.git
                             git checkout -b $BRANCH_NAME
                             git pull origin $BRANCH_NAME
-                            mv ../*.yaml ./python-app-manifest
+                            rm * -rf
+                            mv ../*.yaml .
                             git add .
                             git commit -m $GIT_COMMIT
                             git push origin $BRANCH_NAME
